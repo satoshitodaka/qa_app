@@ -1,20 +1,20 @@
 ## テーブル設計
 
-- User
+- Users
   - nickname: string, null: false
   - email: string, null: false
   - password_digest: string, null: false
   - admin: boolean, default: false, null: false
 
-- Question
+- Questions
   - title: string, null: false
   - context: text, null: false
-  - solved: boolean, default: false, null: false
-  - solved_at: datetime
+  - resolved: boolean, default: false, null: false
+  - resolved_at: datetime
   - reference型でUserに紐づける
 
-- Answer
+- Answers
   - title: string, null: false
   - content: text, null: false
   - reference型でUserに紐づける
-  - reference型でQuestionに紐づける
+  - reference型でQuestionsに紐づける
