@@ -12,10 +12,10 @@
   - content: text, null: false
   - solved: boolean, default: false, null: false
   - solved_at: datetime
-  - reference型でuserに紐づける
+  - reference型でusersに紐づける
 
 - answers
   - title: string, null: false
   - content: text, null: false
-  - reference型でuserに紐づける
+  - reference型でusersに紐づける
   - reference型でquestionsに紐づける
