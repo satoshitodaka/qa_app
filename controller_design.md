@@ -12,7 +12,7 @@
 | 質問詳細を表示する | GET | /questions/:id | questions#show |
 | 質問編集ページを表示する | GET | /questions/:id/edit | questions#edit |
 | 質問を削除する | DELETE | /questions/:id | questions#destroy |
-| 回答する | POST| /questions/:id/answers/new | answers#new |
+| 回答する | POST| /questions/:id/answers | answers#create |
 | ユーザー一覧を表示する | GET | /admin/users | admin/users#show |
 | 管理画面用のログインページを表示する | GET | /admin/login | admin/sessions#new |
 | （管理画面）質問一覧ページを表示する | GET | /admin/questions | admin/questions#show |
