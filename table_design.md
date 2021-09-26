@@ -1,19 +1,20 @@
 ## テーブル設計
 
-- Users
+- users
   - nickname: string, null: false
   - email: string, null: false
   - password_digest: string, null: false
   - admin: boolean, default: false, null: false
+  - `add_index :users, :email, unique: true`で`email`に一意制を保つ。
 
-- Questions
+- questions
   - title: string, null: false
-  - context: text, null: false
-  - resolved: boolean, default: false, null: false
-  - resolved_at: datetime
+  - content: text, null: false
+  - solved: boolean, default: false, null: false
+  - solved_at: datetime
   - reference型でUserに紐づける
 
-- Answers
+- answers
   - title: string, null: false
   - content: text, null: false
   - reference型でUserに紐づける
