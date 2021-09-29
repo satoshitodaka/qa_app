@@ -1,0 +1,13 @@
+- if question.errors.present?
+  ul#error_explanation
+    - question.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: question, local: true do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', id: 'question_title'
+  .form-group
+    = f.label :content
+    = f.text_area :content, class: 'form-control', id: 'question_content'
+  = f.submit '投稿', class: 'btn btn-primary'
