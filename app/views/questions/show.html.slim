@@ -1,0 +1,17 @@
+h1 質問の詳細
+
+/ 一覧ボタンを右に寄せる
+.nav.justify-content-end
+  = link_to '一覧', questions_path, class: 'btn btn-primary'
+table.table.table-hover
+  tbody
+    tr
+      th= Question.human_attribute_name(:title)
+      td= @question.title
+    tr
+      th= Question.human_attribute_name(:content)
+      td= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: 'div') 
+
+= link_to '編集', edit_question_path, class: 'btn btn-primary mr-3'
+= link_to '解決', close_question_path, method: :post,  class: 'btn btn-primary' 
+= link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
