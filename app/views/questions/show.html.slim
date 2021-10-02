@@ -11,6 +11,9 @@ table.table.table-hover
     tr
       th= Question.human_attribute_name(:content)
       td= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: 'div') 
+    tr
+      th= Question.human_attribute_name(:solved)
+      td= @question.solved? ? '解決済' : '未解決'
 
 = link_to '編集', edit_question_path, class: 'btn btn-primary mr-3'
 = link_to '解決', close_question_path, method: :post,  class: 'btn btn-primary' 
