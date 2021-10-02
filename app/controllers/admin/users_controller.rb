@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
 
   def index
-    @users = User.all
+    @users = User.all.order(created_at: :desc)
   end
 
   def show
@@ -30,6 +31,10 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+    def require_admin
+      redirect_to root_url unless current_user.admin
+    end
+
     def user_params
       params.require(:user).permit(:nickname, :email, :admin, :password, :password_confirmation)
     end

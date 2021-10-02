@@ -5,6 +5,14 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
+  def unsolved
+    @unsolved_questions = Question.where(solved: false)
+  end
+
+  def solved
+    @solved_questions = Question.where(solved: true)
+  end
+
   def show
     @question = Question.find(params[:id])
   end
@@ -14,8 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # question = Question.create!(question_params)
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     
     if @question.save
       redirect_to questions_url, notice: "質問「#{@question.title}」を登録しました。"
@@ -26,31 +33,25 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
+    @question = current_user.questions.find(params[:id])
   end
 
   def update
-    question = Question.find(params[:id])
+    question = current_user.questions.find(params[:id])
     question.update!(question_params)
     redirect_to question_url, notice: "タスク「#{question.title}」を更新しました。"
   end
 
   def destroy
-    question = Question.find(params[:id])
+    question = current_user.questions.find(params[:id])
     question.destroy
     redirect_to questions_url, notice: "タスク「#{question.title}」を」を削除しました。"
   end
 
   def close
-    question = Question.find(params[:id])
+    question = current_user.questions.find(params[:id])
     question.close_question
     redirect_to question_url, notice: "タスク「#{question.title}」を解決済に変更しました。"
-  end
-
-  def unsolved
-  end
-
-  def solved
   end
 
   private
