@@ -1,4 +1,5 @@
 h1 質問の詳細
+= @user.nickname
 
 / 一覧ボタンを右に寄せる
 .nav.justify-content-end
@@ -15,6 +16,20 @@ table.table.table-hover
       th= Question.human_attribute_name(:solved)
       td= @question.solved? ? '解決済' : '未解決'
 
+/ 自分の投稿であれば表示
 = link_to '編集', edit_question_path, class: 'btn btn-primary mr-3'
 = link_to '解決', close_question_path, method: :post,  class: 'btn btn-primary' 
 = link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
+h2 回答の投稿
+
+= form_with(model: [@question, @answer], method: :post) do |f|
+  .form_group
+    = f.label :content
+    = f.text_area :content, class: 'form-control', id: 'answer_content'
+    = f.hidden_field :question_id, value: @question.id
+  = f.submit '回答する', class: 'btn btn-primary'
+
+h2 回答一覧
+- @answers.each do |answer|
+  = answer.content

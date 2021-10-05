@@ -22,5 +22,6 @@ Rails.application.routes.draw do
     get 'unsolved', on: :collection
     get 'solved', on: :collection
     post 'close', on: :member
+    resources :answers, only: [:create]
   end
 end
