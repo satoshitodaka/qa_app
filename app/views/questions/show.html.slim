@@ -11,7 +11,7 @@ table.table.table-hover
       td= @question.title
     tr
       th= Question.human_attribute_name(:content)
-      td= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: 'div') 
+      td= simple_format(h(@question.question_body), {}, sanitize: false, wrapper_tag: 'div') 
     tr
       th= Question.human_attribute_name(:solved)
       td= @question.solved? ? '解決済' : '未解決'
@@ -25,11 +25,11 @@ h2 回答の投稿
 
 = form_with(model: [@question, @answer], method: :post) do |f|
   .form_group
-    = f.label :content
-    = f.text_area :content, class: 'form-control', id: 'answer_content'
+    = f.label :question_body
+    = f.text_area :question_body, class: 'form-control', id: 'answer_content'
     = f.hidden_field :question_id, value: @question.id
   = f.submit '回答する', class: 'btn btn-primary'
 
 h2 回答一覧
 - @answers.each do |answer|
-  = answer.content
+  = answer.answer_body

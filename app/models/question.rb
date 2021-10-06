@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   validates :title, presence: true
-  validates :content, presence: true
+  validates :question_body, presence: true
 
   belongs_to :user
   has_many :answers
