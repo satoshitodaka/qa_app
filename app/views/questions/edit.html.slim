@@ -9,6 +9,6 @@ h1 質問の編集
     = f.label :title
     = f.text_field :title, class: 'form-control', id: 'question_title'
   .form-group
-    = f.label :content
-    = f.text_area :content, class: 'form-control', id: 'question_content'
+    = f.label :question_body
+    = f.text_area :question_body, class: 'form-control', id: 'question_content'
   = f.submit nil, class: 'btn btn-primary'
