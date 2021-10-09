@@ -3,17 +3,17 @@ class QuestionsController < ApplicationController
 
   def index
     @q = Question.ransack(params[:q])
-    @questions = @q.result(distinct: true).recent
+    @questions = @q.result(distinct: true).page(params[:page])
   end
 
   def unsolved
     @q = Question.where(solved: false).ransack(params[:q])
-    @unsolved_questions = @q.result(distinct: true).recent
+    @unsolved_questions = @q.result(distinct: true).page(params[:page])
   end
 
   def solved
     @q = Question.where(solved: true).ransack(params[:q])
-    @solved_questions = @q.result(distinct: true).recent
+    @solved_questions = @q.result(distinct: true).page(params[:page])
   end
 
   def show

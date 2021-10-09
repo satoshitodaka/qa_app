@@ -13,6 +13,9 @@ ul.nav.nav-pills.nav-justified
 = link_to '新規登録', new_question_path, class:'btn btn-primary'
 
 .mb-3
+  = paginate @questions
+  = page_entries_info @questions
+
 table.table.table-hover
   thead.thead-default
     tr 
