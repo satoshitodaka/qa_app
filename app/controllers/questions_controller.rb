@@ -2,15 +2,18 @@ class QuestionsController < ApplicationController
   before_action :closed_question?, only: [:update, :destroy, :close]
 
   def index
-    @questions = Question.all
+    @q = Question.ransack(params[:q])
+    @questions = @q.result(distinct: true).recent
   end
 
   def unsolved
-    @unsolved_questions = Question.where(solved: false)
+    @q = Question.where(solved: false).ransack(params[:q])
+    @unsolved_questions = @q.result(distinct: true).recent
   end
 
   def solved
-    @solved_questions = Question.where(solved: true)
+    @q = Question.where(solved: true).ransack(params[:q])
+    @solved_questions = @q.result(distinct: true).recent
   end
 
   def show

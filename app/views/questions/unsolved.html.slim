@@ -1,5 +1,15 @@
 h1 未解決の質問一覧
 
+ul.nav.nav-pills.nav-justified
+  li.nav-item
+    a.nav-link href='/questions' 全て
+  li.nav-item 
+    a.nav-link.active href='#' aria-current="page" 未解決
+  li.nav-item
+    a.nav-link href='solved' 解決済み
+
+= render partial: 'search_field'
+
 = link_to '新規登録', new_question_path, class:'btn btn-primary'
 
 .mb-3
