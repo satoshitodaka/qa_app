@@ -32,7 +32,7 @@ class Admin::UsersController < ApplicationController
 
   private
     def require_admin
-      redirect_to root_url unless current_user.admin
+      redirect_to root_url unless current_admin_user.admin
     end
 
     def user_params

@@ -1,9 +1,9 @@
 h1 質問の詳細
-= @user.nickname
 
 / 一覧ボタンを右に寄せる
 .nav.justify-content-end
   = link_to '一覧', questions_path, class: 'btn btn-primary'
+
 table.table.table-hover
   tbody
     tr
@@ -25,8 +25,8 @@ h2 回答の投稿
 
 = form_with(model: [@question, @answer], method: :post) do |f|
   .form_group
-    = f.label :question_body
-    = f.text_area :question_body, class: 'form-control', id: 'answer_content'
+    = f.label :answer_body
+    = f.text_area :answer_body, class: 'form-control', id: 'answer_content'
     = f.hidden_field :question_id, value: @question.id
   = f.submit '回答する', class: 'btn btn-primary'
 

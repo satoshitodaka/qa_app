@@ -1,0 +1,22 @@
+h1 質問の詳細
+
+/ 一覧ボタンを右に寄せる
+.nav.justify-content-end
+  = link_to '一覧', admin_questions_path, class: 'btn btn-primary'
+table.table.table-hover
+  tbody
+    tr
+      th= Question.human_attribute_name(:title)
+      td= @question.title
+    tr
+      th= Question.human_attribute_name(:content)
+      td= simple_format(h(@question.question_body), {}, sanitize: false, wrapper_tag: 'div') 
+    tr
+      th= Question.human_attribute_name(:solved)
+      td= @question.solved? ? '解決済' : '未解決'
+
+= link_to '削除', [:admin, @question], method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
+h2 回答一覧
+- @answers.each do |answer|
+  = answer.answer_body
