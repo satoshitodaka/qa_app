@@ -31,8 +31,11 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
     
     if @question.save
+      @users = User.all.where.not(id: current_user.id)
+      @users.each do |user|
+        QuestionMailer.creation_email(@question, user).deliver_now
+      end
       redirect_to questions_url, notice: "質問「#{@question.title}」を登録しました。"
-      # メールを送信する処理
     else
       render :new
     end

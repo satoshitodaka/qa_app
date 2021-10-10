@@ -8,8 +8,11 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(answer_params)
 
     if @answer.save
+      @users = User.all.where.not(id: current_user.id)
+      @users.each do |user|
+        AnswerMailer.creation_email(@answer, user).deliver_now
+      end
       redirect_back(fallback_location: root_path)
-      # redirect_to question_url(@question), notice: '回答を作成しました。'
     else
       redirect_back(fallback_location: root_path)
     end
