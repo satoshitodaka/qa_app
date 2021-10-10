@@ -1,0 +1,18 @@
+| 質問に回答が投稿されました。確認してみましょう。
+
+ul
+  li 
+    | タイトル：
+    = @answer.question.title
+  li 
+    | 質問者：
+    = @answer.question.user.nickname
+  li
+    | 質問内容：
+    = simple_format(@answer.question.question_body)
+  li
+    | 回答者：
+    = @answer.user.nickname
+  li 
+    | 回答：
+    = simple_format(@answer.answer_body)
