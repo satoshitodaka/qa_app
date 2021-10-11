@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:nickname, :email, :password, :password_confirmation).merge(admin: false)
+      params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :avatar).merge(admin: false)
     end
 end
 
