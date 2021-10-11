@@ -10,6 +10,9 @@ h1 ユーザー編集
     = f.label :nickname, 'ニックネーム'
     = f.text_field :nickname, class: 'form-control'
   .form-group
+    = f.label :avatar
+    = f.file_field :avatar, class: 'form-control'
+  .form-group
     = f.label :email, 'メールアドレス'
     = f.text_field :email, class: 'form-control'
   .form-group
