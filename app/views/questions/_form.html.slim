@@ -10,4 +10,5 @@
   .form-group
     = f.label :question_body
     = f.text_area :question_body, class: 'form-control', id: 'question_content'
-  = f.submit '投稿', class: 'btn btn-primary'
+  .d-grid.gap-2
+    = f.submit '投稿', class: 'btn btn-primary'

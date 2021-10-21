@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
   def show
     @user = User.find(params[:id])
   end
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
-      redirect_to root_url, notice: 'ユーザー登録が完了しました。'
+      redirect_to root_url, notice: 'ユーザー登録が完了しました。ログインしてください。'
     else
       render :new
     end
