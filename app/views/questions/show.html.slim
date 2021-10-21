@@ -1,35 +1,34 @@
-h1 質問の詳細
-
-/ 一覧ボタンを右に寄せる
-.nav.justify-content-end
-  = link_to '一覧', questions_path, class: 'btn btn-primary'
-
-table.table.table-hover
-  tbody
-    tr
-      th= Question.human_attribute_name(:title)
-      td= @question.title
-    tr
-      th= Question.human_attribute_name(:content)
-      td= simple_format(h(@question.question_body), {}, sanitize: false, wrapper_tag: 'div') 
-    tr
-      th= Question.human_attribute_name(:solved)
-      td= @question.solved? ? '解決済' : '未解決'
-
 / 自分の投稿であれば表示
-= link_to '編集', edit_question_path, class: 'btn btn-primary mr-3'
-= link_to '解決', close_question_path, method: :post,  class: 'btn btn-primary' 
-= link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+- if @question.user == current_user
+  .text-end
+    = link_to '編集', edit_question_path, class: 'btn btn-primary mr-3'
+    = link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
-h2 回答の投稿
+.card.mb-3 style="max-width: 1440px"
+  .row.no-gutters
+    .col-md-4 
+      / = image_tdag @question.user.avatar.variant(combine_options: { gravity: :center, resize:"120x120^", crop:"120x120+0+0" }).processed, class:"avatar" if @question.user.avatar.attached?
+      = image_tag @question.user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
+    .col-md-8 
+      .card-body 
+        h2.card-title = @question.title
+        p.card-text = @question.question_body
+        p.card-text
+          small.text-muted
+            = time_ago_in_words(@question.created_at) 
+            | 前に投稿
+
+- if @question.user == current_user
+  .d-grid.gap-2.col-6.mx-auto
+    = link_to '解決済みにする', close_question_path, method: :post,  class: 'btn btn-success btn-block' 
 
 = form_with(model: [@question, @answer], method: :post) do |f|
   .form_group
-    = f.label :answer_body
+    / = f.label :answer_body
     = f.text_area :answer_body, class: 'form-control', id: 'answer_content'
     = f.hidden_field :question_id, value: @question.id
-  = f.submit '回答する', class: 'btn btn-primary'
+  .d-grid.gap-2.col-6.mx-auto
+    = f.submit '回答する', class: 'btn btn-primary'
 
-h2 回答一覧
-- @answers.each do |answer|
-  = answer.answer_body
+/ 回答一覧
+= render 'answers/answer'

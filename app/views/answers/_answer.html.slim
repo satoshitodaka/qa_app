@@ -1,0 +1,15 @@
+- @answers.each do |answer|
+  .card.mb-3 style="max-width: 1440px;"
+    .row.no-gutters
+      .col-md-4 
+        / = image_tag answer.user.avatar.variant(resize: '120') if answer.user.avatar.attached?
+        = image_tag answer.user.avatar.variant(combine_options: { resize: "100^", gravity: "Center", crop: "100x100+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
+      .col-md-8
+        .card-body 
+          h2.card-text
+            = answer.answer_body
+          p.card-text
+            small.text-muted
+              = time_ago_in_words(answer.created_at)
+              | 前に投稿
+

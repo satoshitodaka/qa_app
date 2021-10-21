@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :closed_question?, only: [:update, :destroy, :close]
+  before_action :own_question?, only: [:edit, :destroy, :close]
 
   def index
     @q = Question.ransack(params[:q])
@@ -72,6 +73,13 @@ class QuestionsController < ApplicationController
       question =  Question.find(params[:id])
       if question.solved
         redirect_to question_url, notice: '解決済みの質問は操作できません。'
+      end
+    end
+
+    def own_question?
+      question =  Question.find(params[:id])
+      if question.user != current_user
+        redirect_to question_url, notice: '他ユーザーの質問は操作できません。'
       end
     end
 end

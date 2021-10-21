@@ -1,7 +1,3 @@
 h1 質問の新規作成
 
-/ 一覧ボタンを右に寄せる
-.nav.justify-content-end
-  = link_to '一覧', questions_path, class: 'btn btn-primary'
-
 = render partial: 'form', locals: { question: @question }

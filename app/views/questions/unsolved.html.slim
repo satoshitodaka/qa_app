@@ -21,3 +21,7 @@ table.table.table-hover
     - @unsolved_questions.each do |question|
       tr
         td= link_to question.title, question
+
+.mb-3
+  = paginate @unsolved_questions
+  = page_entries_info @unsolved_questions

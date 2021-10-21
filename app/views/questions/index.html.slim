@@ -10,17 +10,11 @@ ul.nav.nav-pills.nav-justified
 
 = render partial: 'search_field'
 
-= link_to '新規登録', new_question_path, class:'btn btn-primary'
+= link_to '新規登録', new_question_path, class:'btn btn-primary btn-block'
+
+ol.questions
+  = render 'question'
 
 .mb-3
   = paginate @questions
   = page_entries_info @questions
-
-table.table.table-hover
-  thead.thead-default
-    tr 
-      th= Question.human_attribute_name(:title)
-  tbody
-    - @questions.each do |question|
-      tr
-        td= link_to question.title, question

@@ -21,3 +21,11 @@ table.table.table-hover
     - @solved_questions.each do |question|
       tr
         td= link_to question.title, question
+
+/ ol.questions
+/   = render partial: 'question', locals: { @solved_questions: @questions } 
+/   = render partial: 'form'    , locals: { user: @user }    
+
+.mb-3
+  = paginate @solved_questions
+  = page_entries_info @solved_questions
