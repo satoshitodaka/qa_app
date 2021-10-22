@@ -1,28 +1,6 @@
-/ = search_form_for @q, class: 'mb-5' do |f|
-/   .form-group.row
-/     = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
-/     .col-sm-10
-/       = f.search_field :title_cont, class: 'form-control'
-/     / = f.label :question_body_cont, '質問内容', class: 'col-sm-2 col-form-label'
-/     / .col-sm-10
-/     /   = f.search_field :question_body_cont, class: 'form-control'
-/     / = f.label :create_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
-/     / .col-sm-10
-/     /   = f.search_field :created_at_gteq, class: 'form-control'
-/   .form-group
-/     = f.submit class: 'btn btn-outline-primary'
-
-= search_form_for @q, class: 'd-flex' do |f|
-  .form-group.row
-    / = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      = f.search_field :title_cont, class: 'form-control me-2'
-      = f.submit class: 'btn btn-outline-primary'
-    / = f.label :question_body_cont, '質問内容', class: 'col-sm-2 col-form-label'
-    / .col-sm-10
-    /   = f.search_field :question_body_cont, class: 'form-control'
-    / = f.label :create_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
-    / .col-sm-10
-    /   = f.search_field :created_at_gteq, class: 'form-control'
-  / .form-group
-  /   = f.submit class: 'btn btn-outline-primary'
+.mt-4.mb-4
+  = search_form_for @q, class: 'd-flex' do |f|
+    .form-group.row
+      .col-sm-10
+        = f.search_field :title_cont, class: 'form-control me-2'
+        = f.submit class: 'btn btn-outline-primary'

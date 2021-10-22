@@ -1,6 +1,4 @@
-h1 Questions一覧
-
-ul.nav.nav-pills.nav-justified
+ul.nav.nav-pills.nav-justified.mt-4.mb-4
   li.nav-item
     a.nav-link.active href='#' aria-current="page" 全て
   li.nav-item 
@@ -10,7 +8,8 @@ ul.nav.nav-pills.nav-justified
 
 = render partial: 'search_field'
 
-= link_to '新規登録', new_question_path, class:'btn btn-primary btn-block'
+.mt-4.mb-4
+  = link_to '新規登録', new_question_path, class:'btn btn-primary btn-block'
 
 ol.questions
   = render 'question'
