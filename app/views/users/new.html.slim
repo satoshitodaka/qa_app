@@ -21,4 +21,5 @@ h1 ユーザー登録
   .form-group
     = f.label :password_confirmation, 'パスワード（確認）'
     = f.text_field :password_confirmation, class: 'form-control'
-  = f.submit '登録する', class: 'btn btn-primary'
+  .d-grid.gap-2.col-8.mx-auto
+    = f.submit '登録する', class: 'btn btn-primary rounded-pill mt-3 mb-3'
