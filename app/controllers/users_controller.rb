@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    # @user.avatar = "user_icon.jpg"
 
     if @user.save
       redirect_to root_url, notice: 'ユーザー登録が完了しました。ログインしてください。'
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :avatar).merge(admin: false)
+      params.require(:user).permit(:nickname, :email, :password, :password_confirmation).merge(admin: false)
     end
 end
 

@@ -8,4 +8,12 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  before_create :default_image
+
+  def default_image
+    if !self.avatar.attached?
+      avatar.attach(io: File.open('app/assets/images/user_icon.jpg'), filename: 'user_icon.jpg', content_type: 'image/jpeg')
+    end
+  end
+
 end
