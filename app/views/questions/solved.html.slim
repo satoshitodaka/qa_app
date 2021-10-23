@@ -8,20 +8,11 @@ ul.nav.nav-pills.nav-justified.mt-4.mb-4
 
 = render partial: 'search_field'
 
-= link_to '新規登録', new_question_path, class:'btn btn-primary'
+.d-grid.gap-2.col-8.mx-auto
+  = link_to '新規登録', new_question_path, class:'btn btn-primary rounded-pill'
 
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr 
-      th= Question.human_attribute_name(:title)
-  tbody
-    - @solved_questions.each do |question|
-      tr
-        td= link_to question.title, question
-
-/ ol.questions
-/   = render partial: 'question', locals: { @solved_questions: @questions } 
+ol.questions
+  = render partial: 'question', locals: { questions: @solved_questions } 
 /   = render partial: 'form'    , locals: { user: @user }    
 
 .mb-3
