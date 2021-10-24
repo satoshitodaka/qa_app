@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   before_create :default_image
-  before_update :default_image
 
   def default_image
     if !self.avatar.attached?

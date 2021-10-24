@@ -8,7 +8,7 @@
 
 ul.list-group.list-group-flush.m-3
   li.list-group-item
-    .m4.d-block
+    .m-3.d-block
       .d-flex 
         .flex-shrink-0
           = image_tag @question.user.avatar.variant(combine_options: { resize: "125^", gravity: "Center", crop: "125x125+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
