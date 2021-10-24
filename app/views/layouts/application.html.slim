@@ -14,8 +14,8 @@ html
 
       ul.navbar-nav.ml-auto
         - if current_user
-          li.nav-item= link_to 'ユーザー一覧', users_path, class: 'nav-link'
           li.nav-item= link_to '質問一覧', questions_path, class: 'nav-link'
+          li.nav-item= link_to 'ユーザー一覧', users_path, class: 'nav-link'
           li.nav-item= link_to '管理者ログイン', admin_login_path, class: 'nav-link'
           li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
           = link_to image_tag(current_user.avatar.variant(combine_options: { resize: "50^", gravity: "Center", crop: "50x50+0+0", auto_orient: true }).processed, class:"avatar"), user_path(current_user)
@@ -24,59 +24,8 @@ html
         - else 
           li.nav-item= link_to 'ログイン', login_path, class: 'nav-link' 
     .container
-      - if flash.notice.present?
-        .alert.alert-success= flash.notice
+      .mt-3
+        - if flash.notice.present?
+          .alert.alert-success= flash.notice
       = yield
-
-/ <!DOCTYPE html>
-/ <html lang="ja">
-/ <head>
-/     <meta charset="UTF-8">
-/     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-/     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-/     <title>サンプルコード</title>
-/ </head>
-/ <body style="padding-top:60px">
-/   <div class="container">
-/     <nav class="navbar navbar-expand navbar-dark bg-info fixed-top">
-/       <a href="#" class="navbar-brand">Qumeruカフェ</a>
-
-/       <form class="form-inline ml-auto">
-/         <label class="sr-only" for="keyword">サイト内検索</label>
-/         <input type="search" class="form-control form-control-sm mr-2" placeholder="検索" id="keyword">
-/         <button type="submit" class="btn btn-warning btn-sm">検索</button>
-/       </form>
-/     </nav>
-/     <div class="card m-3">
-/       <div class="card-body">
-/         <h3 class="card-title">おすすめコース</h3>
-/         <h6 class="card-subtitle mb-2">-季節の野菜を使用-</h6>
-/         <p class="card-text">シェフのおすすめコースです。季節ごとに内容は異なります。</p>
-/         <a class="card-link ml-auto" href="#">詳細</a>
-/       </div>
-/     </div>
-/     <div class="card m-3">
-/       <div class="card-body">
-/         <h3 class="card-title">魚介コース</h3>
-/         <p class="card-text">近くの市場からその日仕入れた魚介類を使ったコースです。</p>
-/         <a class="card-link ml-auto" href="#">詳細</a>
-/       </div>
-/     </div>
-/     <div class="card m-3">
-/       <div class="card-body">
-/         <h3 class="card-title">贅沢コース</h3>
-/         <p class="card-text">高級食材を使用した贅沢なコースです。大切な日のお食事に是非。</p>
-/         <a class="card-link ml-auto" href="#">詳細</a>
-/       </div>
-/     </div>
-/     <div class="card m-3">
-/       <div class="card-body">
-/         <h3 class="card-title">お手軽コース</h3>
-/         <p class="card-text">ボリュームを控えめにしたコースです。メインは３種類からお選びいただけます。</p>
-/         <a class="card-link ml-auto" href="#">詳細</a>
-/       </div>
-/     </div>
-/   </div>
-/ </body>
-/ </html>
-
+      
