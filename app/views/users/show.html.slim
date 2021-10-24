@@ -1,12 +1,8 @@
-h1 ユーザーの詳細
+.m-3.text-center
+  = image_tag @user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @user.avatar.attached?
 
-.nav.justify-content-end
-  = link_to 'ユーザー一覧', users_path, class: 'nav-link'
 table.table.table-hover
   tbody
-    tr
-      th= User.human_attribute_name(:avatar)
-      td= image_tag @user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @user.avatar.attached?
     tr
       th= User.human_attribute_name(:id)
       td= @user.id
@@ -18,9 +14,11 @@ table.table.table-hover
       td= @user.email
     tr
       th= User.human_attribute_name(:created_at)
-      td= @user.created_at
+      td= l @user.created_at
     tr
       th= User.human_attribute_name(:updated_at)
-      td= @user.updated_at
+      td= l @user.updated_at
 
-= link_to '編集', edit_user_path, class: 'btn btn-primary mr-3'
+.d-grid.gap-2.mx-auto.m-3
+  - if current_user == @user
+    = link_to '編集する', edit_user_path, class: 'btn btn-primary rounded-pill'

@@ -1,9 +1,10 @@
-h1 ユーザー編集
-
 - if @user.errors.present?
   ul#error_explanation
     - @user.errors.full_messages.each do |message|
       li= message
+
+.m-3.text-center
+  = image_tag @user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @user.avatar.attached?
 
 = form_with model: @user, local: true do |f|
   .form-group
@@ -21,4 +22,5 @@ h1 ユーザー編集
   .form-group
     = f.label :password_confirmation, 'パスワード（確認）'
     = f.text_field :password_confirmation, class: 'form-control'
-  = f.submit '更新する', class: 'btn btn-primary'
+  .d-grid.gap-2.m-3
+    = f.submit '更新する', class: 'btn btn-primary rounded-pill'

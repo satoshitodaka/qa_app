@@ -1,0 +1,10 @@
+ul.list-group.list-group-flush
+  - @users.each do |user|
+    li.list-group-item 
+      .m-4.d-block 
+        .d-flex.position-relative
+          .flex-shrink-0 
+            = image_tag user.avatar.variant(combine_options: { resize: "75^", gravity: "Center", crop: "75x75+0+0", auto_orient: true }).processed, class:"avatar" if user.avatar.attached?
+          .flex-grow-1.ms-3.mx-auto
+            = link_to user.nickname, user, class:'navbar-brand h1 stretched-link'
+

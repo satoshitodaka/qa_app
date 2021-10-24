@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
+  before_action :own_user_info?, only: [:edit, :update]
+  
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -9,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
     # @user.avatar = "user_icon.jpg"
 
     if @user.save
@@ -29,12 +35,19 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to user_url, notice: "ユーザー「#{@user.nickname}」を編集しました。"
+    else
+      render :edit
     end
   end
 
   private
     def user_params
-      params.require(:user).permit(:nickname, :email, :password, :password_confirmation).merge(admin: false)
+      params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :avatar).merge(admin: false)
+    end
+
+    def own_user_info?
+      user = User.find(params[:id])
+      redirect_to users_url, notice: "他ユーザーの情報は変更できません。" if current_user != user
     end
 end
 
