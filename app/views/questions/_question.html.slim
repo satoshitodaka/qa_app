@@ -7,19 +7,7 @@ ul.list-group.list-group-flush
             = image_tag question.user.avatar.variant(combine_options: { resize: "75^", gravity: "Center", crop: "75x75+0+0", auto_orient: true }).processed, class:"avatar" if question.user.avatar.attached?
           .flex-glow-1.ms-3
             h2= link_to question.title, question
-            p= "#{time_ago_in_words(question.created_at)}前に投稿"
+            small.text-muted #{time_ago_in_words(question.created_at)}前に投稿
             
 
-
-/ <div class="m-4">
-/     <div class="d-flex">
-/         <div class="flex-shrink-0">
-/             <img src="/examples/images/avatar.svg" width="80" height="80" alt="Sample Image">
-/         </div>
-/         <div class="flex-grow-1 ms-3">
-/             <h5>Jhon Carter <small class="text-muted"><i>Posted on January 10, 2021</i></small></h5>
-/             <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
-/         </div>
-/     </div>
-/ </div>
 

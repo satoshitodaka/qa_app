@@ -1,6 +1,7 @@
 .mt-4.mb-4
   = search_form_for @q, class: 'd-flex' do |f|
     .form-group.row
-      .col-sm-10
-        = f.search_field :title_cont, class: 'form-control me-2'
-        = f.submit class: 'btn btn-outline-primary'
+      .col-10
+        = f.search_field :title_or_question_body_cont, class: 'form-control me-2', placeholder: 'キーワード検索'
+    .form-group
+      = f.submit class: 'btn btn-outline-primary'
