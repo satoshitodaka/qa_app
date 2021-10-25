@@ -1,19 +1,22 @@
-h1 質問の詳細
+.container-fluid
+  .row
+    = render partial: 'admin/questions/sidebar'
 
-table.table.table-hover
-  tbody
-    tr
-      th= Question.human_attribute_name(:title)
-      td= @question.title
-    tr
-      th= Question.human_attribute_name(:content)
-      td= simple_format(h(@question.question_body), {}, sanitize: false, wrapper_tag: 'div') 
-    tr
-      th= Question.human_attribute_name(:solved)
-      td= @question.solved? ? '解決済' : '未解決'
+    .col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      table.table.table-hover
+        tbody
+          tr
+            th= Question.human_attribute_name(:title)
+            td= @question.title
+          tr
+            th= Question.human_attribute_name(:content)
+            td= simple_format(h(@question.question_body), {}, sanitize: false, wrapper_tag: 'div') 
+          tr
+            th= Question.human_attribute_name(:solved)
+            td= @question.solved? ? '解決済' : '未解決'
 
-= link_to '削除', [:admin, @question], method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+      = link_to '削除', [:admin, @question], method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
-h2 回答一覧
-- @answers.each do |answer|
-  = answer.answer_body
+      h2 回答一覧
+      - @answers.each do |answer|
+        = answer.answer_body
