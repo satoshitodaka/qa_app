@@ -1,30 +1,17 @@
-h1 ユーザー一覧
+.container-fluid
+  .row
+    = render partial: 'admin/questions/sidebar'
 
-.mb-3
-
-.row
-  .col-md-2
-    aside
-      = link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-primary mr-3'
-      = link_to '質問一覧', admin_questions_path, class: 'btn btn-primary mr-3'
-  
-  .col-md-10
-    table.table.table-hover
-      thead.head-default
-        tr 
-          th= User.human_attribute_name(:nickname)
-          th= User.human_attribute_name(:email)
-          th= User.human_attribute_name(:admin)
-          th= User.human_attribute_name(:created_at)
-          th= User.human_attribute_name(:updated_at)
-      tbody
+    .col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      ul.list-group.list-group-flush
         - @users.each do |user|
-          tr 
-            td= link_to user.nickname, [:admin, user]
-            td= user.email 
-            td= user.admin? ? '管理' : '一般'
-            td= user.created_at
-            td= user.updated_at
-            td 
-              = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
-              = link_to '削除',[:admin, user], method: :delete, data: {confirm: "ユーザー「#{user.nickname}」を削除します。よろしいですか？"} ,class: 'btn btn-danger'
+          li.list-group-item 
+            .m-4.d-block 
+              .d-flex
+                .flex-shrink-0 
+                  = image_tag user.avatar.variant(combine_options: { resize: "75^", gravity: "Center", crop: "75x75+0+0", auto_orient: true }).processed, class:"avatar" if user.avatar.attached?
+                .flex-grow-1.ms-3.mx-auto
+                  = link_to user.nickname, admin_user_path(user), class:'navbar-brand h1'
+                .flex-grow-1.ms-3.text-end
+                  = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary m-2'
+                  = link_to '削除',[:admin, user], method: :delete, data: {confirm: "ユーザー「#{user.nickname}」を削除します。よろしいですか？"} ,class: 'btn btn-danger m-2'

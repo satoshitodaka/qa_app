@@ -1,33 +1,34 @@
-h1 Questions一覧
+.container-fluid
+  .row
+    = render partial: 'admin/questions/sidebar'
 
-= search_form_for @q, class: 'mb-5' do |f|
-  .form-group.row
-    = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      = f.search_field :title_cont, class: 'form-control'
-    = f.label :question_body_cont, '質問内容', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      = f.search_field :question_body_cont, class: 'form-control'
-    = f.label :create_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      = f.search_field :created_at_gteq, class: 'form-control'
-  .form-group
-    = f.submit class: 'btn btn-outline-primary'
+    .col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      = search_form_for @q, class: 'mb-5' do |f|
+        .form-group.row
+          = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
+          .col-sm-10
+            = f.search_field :title_cont, class: 'form-control'
+          = f.label :question_body_cont, '質問内容', class: 'col-sm-2 col-form-label'
+          .col-sm-10
+            = f.search_field :question_body_cont, class: 'form-control'
+          = f.label :create_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
+          .col-sm-10
+            = f.search_field :created_at_gteq, class: 'form-control'
+        .form-group
+          = f.submit class: 'btn btn-outline-primary'
 
-.mb-3
+      .row
+        .col-md-2
+          aside
+            = link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-primary mr-3'
+            = link_to '質問一覧', admin_questions_path, class: 'btn btn-primary mr-3'
 
-.row
-  .col-md-2
-    aside
-      = link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-primary mr-3'
-      = link_to '質問一覧', admin_questions_path, class: 'btn btn-primary mr-3'
-
-  .col-md-10
-    table.table.table-hover
-      thead.thead-default
-        tr 
-          th= Question.human_attribute_name(:title)
-      tbody
-        - @questions.each do |question|
-          tr
-            td= link_to question.title, admin_question_url(question)
+        .col-md-10
+          table.table.table-hover
+            thead.thead-default
+              tr 
+                th= Question.human_attribute_name(:title)
+            tbody
+              - @questions.each do |question|
+                tr
+                  td= link_to question.title, admin_question_url(question)

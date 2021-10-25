@@ -7,6 +7,9 @@
   .form_group
     = f.label :nickname, 'ニックネーム'
     = f.text_field :nickname, class: 'form-control'
+  .form-group
+    = f.label :avatar
+    = f.file_field :avatar, class: 'form-control'
   .form_group
     = f.label :email, 'メールアドレス'
     = f.text_field :email, class: 'form-control'
@@ -20,4 +23,5 @@
   .form_group
     = f.label :password_confirmation, 'パスワード（確認）'
     = f.password_field :password_confirmation, class: 'form-control'
-  = f.submit '更新する', class: 'btn btn-primary'
+  .d-grid.gap-2.m-3
+    = f.submit '更新する', class: 'btn btn-primary rounded-pill'

@@ -1,7 +1,6 @@
-h1 ユーザーの詳細(admin権限)
+.m-3.text-center
+  = image_tag @user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @user.avatar.attached?
 
-.nav.justify-content-end
-  = link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
 table.table.table-hover
   tbody
     tr
@@ -15,14 +14,14 @@ table.table.table-hover
       td= @user.email
     tr
       th= User.human_attribute_name(:admin)
-      td= @user.admin? ? '管理' : '一般'
+      td= @user.admin? ? '管理権限' : '一般権限'
     tr
       th= User.human_attribute_name(:created_at)
-      td= @user.created_at
+      td= l @user.created_at
     tr
       th= User.human_attribute_name(:updated_at)
-      td= @user.updated_at
+      td= l @user.updated_at
 
-= link_to '編集', edit_admin_user_path, class: 'btn btn-primary mr-3'
-= link_to '削除', [:admin, @user], method: :delete, data: { confirm: "ユーザー「#{@user.nickname}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
-
+.d-grid.gap-2.mx-auto.m-3
+  = link_to '編集', edit_admin_user_path, class: 'btn btn-primary rounded-pill'
+  = link_to '削除', [:admin, @user], method: :delete, data: { confirm: "ユーザー「#{@user.nickname}」を削除します。よろしいですか？"}, class: 'btn btn-danger rounded-pill'
