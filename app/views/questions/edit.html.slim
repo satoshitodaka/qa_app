@@ -1,12 +1,1 @@
-h1 質問の編集
-
 = render partial: 'form', locals: { question: @question}
-
-/ = form_with model: @question, local: true do |f|
-/   .form-group
-/     = f.label :title
-/     = f.text_field :title, class: 'form-control', id: 'question_title'
-/   .form-group
-/     = f.label :question_body
-/     = f.text_area :question_body, class: 'form-control', id: 'question_content'
-/   = f.submit nil, class: 'btn btn-primary'
