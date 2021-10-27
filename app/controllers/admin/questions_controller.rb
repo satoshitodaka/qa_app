@@ -1,7 +1,7 @@
 class Admin::QuestionsController < ApplicationController
   def index
     @q = Question.ransack(params[:q])
-    @questions = @q.result(distinct: true).recent
+    @questions = @q.result(distinct: true).recent.page(params[:page])
   end
 
   def show
