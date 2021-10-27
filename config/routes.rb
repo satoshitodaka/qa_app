@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  # 自分のユーザーしか操作しないからresourceでOK？
   resources :users, except: :destroy
 
   namespace :admin do
