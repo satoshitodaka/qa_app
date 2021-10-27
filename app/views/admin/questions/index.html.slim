@@ -27,29 +27,3 @@
       .mb-3
         = paginate @questions
         = page_entries_info @questions
-
-      / = search_form_for @q, class: 'mb-5' do |f|
-      /   .form-group.row
-      /     = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
-      /     .col-sm-10
-      /       = f.search_field :title_cont, class: 'form-control'
-      /     = f.label :question_body_cont, '質問内容', class: 'col-sm-2 col-form-label'
-      /     .col-sm-10
-      /       = f.search_field :question_body_cont, class: 'form-control'
-      /     = f.label :create_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
-      /     .col-sm-10
-      /       = f.search_field :created_at_gteq, class: 'form-control'
-      /   .form-group
-      /     = f.submit class: 'btn btn-outline-primary'
-
-      / .row
-
-      /   .col-md-10
-      /     table.table.table-hover
-      /       thead.thead-default
-      /         tr 
-      /           th= Question.human_attribute_name(:title)
-      /       tbody
-      /         - @questions.each do |question|
-      /           tr
-      /             td= link_to question.title, admin_question_url(question)

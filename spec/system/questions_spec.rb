@@ -50,7 +50,7 @@ describe "Questions", type: :system do
       visit new_question_path
       fill_in 'タイトル', with: question_title
       fill_in 'question[question_body]', with: question_body
-      click_button '投稿'
+      click_button '登録する'
     end
 
     context 'タイトルと質問内容を入力した時' do
