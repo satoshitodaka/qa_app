@@ -27,7 +27,6 @@ ul.list-group.list-group-flush.m-3
 
 = form_with(model: [@question, @answer], method: :post) do |f|
   .form_group
-    / = f.label :answer_body
     = f.text_area :answer_body, class: 'form-control', id: 'answer_content', placeholder:'回答を入力してみましょう。'
     = f.hidden_field :question_id, value: @question.id
   .d-grid.gap-2.mx-auto.m-3
