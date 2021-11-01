@@ -14,9 +14,8 @@ ul.list-group.list-group-flush.m-3
           = image_tag @question.user.avatar.variant(combine_options: { resize: "125^", gravity: "Center", crop: "125x125+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
         .flex-glow-1.ms-3
           h2 = @question.title
-          small.text-muted #{time_ago_in_words(@question.created_at)}前に投稿
           p = @question.question_body
-        / .d-flex.flex-row-reverse.bd-highlight
+          small.text-muted #{time_ago_in_words(@question.created_at)}前に投稿
         .flex-grow-1.ms-3.text-end
           = link_to '編集', edit_question_path, class: 'btn btn-primary m-3'
           = link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger m-3'
