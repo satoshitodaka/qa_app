@@ -1,0 +1,38 @@
+.container-fluid
+  .row
+    = render partial: 'admin/questions/sidebar'
+
+    .col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      .d-grid.gap-2.mx-auto.m-3
+        - if @question.solved == true
+          .alert.alert-success
+            | 解決済み
+        - else
+          .alert.alert-info
+            | 回答受付中
+
+      ul.list-group.list-group-flush.m-3
+        li.list-group-item
+          .m-3.d-block
+            .d-flex 
+              .flex-shrink-0
+                = image_tag @question.user.avatar.variant(combine_options: { resize: "125^", gravity: "Center", crop: "125x125+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
+              .flex-glow-1.ms-3
+                h2 = @question.title
+                small.text-muted #{time_ago_in_words(@question.created_at)}前に投稿
+                p = @question.question_body
+              .flex-grow-1.ms-3.text-end
+                = link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger m-3'
+
+      ul.list-group.list-group-flush
+        - @answers.each do |answer|
+          li.list-group-item
+            .m-4.d-block
+              .d-flex
+                .flex-shrink-0
+                  = image_tag answer.user.avatar.variant(combine_options: { resize: "75^", gravity: "Center", crop: "75x75+0+0", auto_orient: true }).processed, class:"avatar" if answer.user.avatar.attached?
+                .flex-glow-1.ms-3
+                  h3= answer.answer_body
+                  small.text-muted #{time_ago_in_words(answer.created_at)}前に投稿
+                .flex-grow-1.ms-3.text-end
+                  = link_to '削除', admin_answer_path(answer), method: :delete, data: { confirm: "回答「#{answer.answer_body}」を削除します。よろしいですか？" }, class: 'btn btn-danger m-3'

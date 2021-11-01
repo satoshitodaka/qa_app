@@ -15,7 +15,7 @@
   - reference型でusersに紐づける
 
 - answers
-  - title: string, null: false
+  <!-- - title: string, null: false -->
   - content: text, null: false
   - reference型でusersに紐づける
   - reference型でquestionsに紐づける

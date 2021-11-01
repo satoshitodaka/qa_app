@@ -1,0 +1,13 @@
+ul.list-group.list-group-flush
+  - questions.each do |question|
+    li.list-group-item
+      .m-4.d-block
+        .d-flex
+          .flex-shrink-0 
+            = image_tag question.user.avatar.variant(combine_options: { resize: "75^", gravity: "Center", crop: "75x75+0+0", auto_orient: true }).processed, class:"avatar" if question.user.avatar.attached?
+          .flex-glow-1.ms-3
+            h2= link_to question.title, question
+            small.text-muted #{time_ago_in_words(question.created_at)}前に投稿
+            
+
+

@@ -6,7 +6,7 @@
 | ログインする | POST | /login | sessions#create |
 | 質問一覧を表示する（全て） | GET | /questions | questions#index |
 | 質問一覧を表示する（未解決） | GET | /questions/unsolved | questions#unsolved |
-| 質問一覧を表示する（解決済み） | GET | /questions/resolved | questions#resolved |
+| 質問一覧を表示する（解決済み） | GET | /questions/solved | questions#solved |
 | 質問投稿ページを表示する | GET | /questions/new | questions#new |
 | 質問投稿をする | POST | /questions | questions#create |
 | 質問詳細を表示する | GET | /questions/:id | questions#show |

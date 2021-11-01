@@ -1,0 +1,24 @@
+.m-3.text-center
+  = image_tag @user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @user.avatar.attached?
+
+table.table.table-hover
+  tbody
+    tr
+      th= User.human_attribute_name(:id)
+      td= @user.id
+    tr
+      th=User.human_attribute_name(:nickname)
+      td= @user.nickname
+    tr
+      th= User.human_attribute_name(:email)
+      td= @user.email
+    tr
+      th= User.human_attribute_name(:created_at)
+      td= l @user.created_at
+    tr
+      th= User.human_attribute_name(:updated_at)
+      td= l @user.updated_at
+
+.d-grid.gap-2.mx-auto.m-3
+  - if current_user == @user
+    = link_to '編集する', edit_user_path, class: 'btn btn-primary rounded-pill'

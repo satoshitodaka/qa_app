@@ -1,0 +1,19 @@
+ul.nav.nav-pills.nav-justified.mt-4.mb-4
+  li.nav-item
+    a.nav-link href='/questions' 全て
+  li.nav-item 
+    a.nav-link.active href='#' aria-current="page" 未解決
+  li.nav-item
+    a.nav-link href='solved' 解決済み
+
+= render partial: 'search_field'
+
+.d-grid.gap-2.col-8.mx-auto
+  = link_to '新規登録', new_question_path, class:'btn btn-primary rounded-pill'
+
+ol.questions
+  = render partial: 'question', locals: { questions: @unsolved_questions } 
+
+.mb-3
+  = paginate @unsolved_questions
+  = page_entries_info @unsolved_questions

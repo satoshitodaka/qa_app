@@ -1,0 +1,23 @@
+- if @user.errors.present?
+  ul#error_explanation
+    - @user.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: @user, local: true do |f|
+  .form-group
+    = f.label :nickname, 'ニックネーム'
+    = f.text_field :nickname, class: 'form-control'
+  .form-group
+    = f.label :email, 'メールアドレス'
+    = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :avatar
+    = f.file_field :avatar, class: 'form-control'
+  .form-group
+    = f.label :password, 'パスワード'
+    = f.text_field :password, class: 'form-control'
+  .form-group
+    = f.label :password_confirmation, 'パスワード（確認）'
+    = f.text_field :password_confirmation, class: 'form-control'
+  .d-grid.gap-2.col-8.mx-auto
+    = f.submit '登録する', class: 'btn btn-primary rounded-pill mt-3 mb-3'

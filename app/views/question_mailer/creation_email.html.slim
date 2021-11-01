@@ -1,0 +1,12 @@
+| 新しい質問が投稿されました。回答してみましょう。
+
+ul
+  li 
+    | タイトル：
+    = @question.title
+  li 
+    | 質問者：
+    = @question.user.nickname
+  li
+    | 質問内容：
+    = simple_format(@question.question_body)

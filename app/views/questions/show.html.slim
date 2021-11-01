@@ -1,0 +1,35 @@
+.d-grid.gap-2.mx-auto.m-3
+  - if @question.solved == true
+    .alert.alert-success
+      | 解決済み
+  - else
+    .alert.alert-info
+      | 回答受付中
+
+ul.list-group.list-group-flush.m-3
+  li.list-group-item
+    .m-3.d-block
+      .d-flex 
+        .flex-shrink-0
+          = image_tag @question.user.avatar.variant(combine_options: { resize: "125^", gravity: "Center", crop: "125x125+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
+        .flex-glow-1.ms-3
+          h2 = @question.title
+          p = @question.question_body
+          small.text-muted #{time_ago_in_words(@question.created_at)}前に投稿
+        .flex-grow-1.ms-3.text-end
+          = link_to '編集', edit_question_path, class: 'btn btn-primary m-3'
+          = link_to '削除', @question, method: :delete, data: { confirm: "タスク「#{@question.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger m-3'
+
+- if @question.user == current_user && @question.solved == false
+  .d-grid.gap-2.mx-auto.mb-5
+    = link_to '解決済みにする', close_question_path, method: :post,  class: 'btn btn-success rounded-pill' 
+
+= form_with(model: [@question, @answer], method: :post) do |f|
+  .form_group
+    = f.text_area :answer_body, class: 'form-control', id: 'answer_content', placeholder:'回答を入力してみましょう。'
+    = f.hidden_field :question_id, value: @question.id
+  .d-grid.gap-2.mx-auto.m-3
+    = f.submit '回答する', class: 'btn btn-primary rounded-pill'
+
+/ 回答一覧
+= render 'answers/answer'

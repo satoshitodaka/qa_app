@@ -1,0 +1,26 @@
+- if @user.errors.present?
+  ul#error_explanation
+    - @user.errors.full_messages.each do |message|
+      li= message
+
+.m-3.text-center
+  = image_tag @user.avatar.variant(combine_options: { resize: "150^", gravity: "Center", crop: "150x150+0+0", auto_orient: true }).processed, class:"avatar" if @user.avatar.attached?
+
+= form_with model: @user, local: true do |f|
+  .form-group
+    = f.label :nickname, 'ニックネーム'
+    = f.text_field :nickname, class: 'form-control'
+  .form-group
+    = f.label :avatar
+    = f.file_field :avatar, class: 'form-control'
+  .form-group
+    = f.label :email, 'メールアドレス'
+    = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :password, 'パスワード'
+    = f.text_field :password, class: 'form-control'
+  .form-group
+    = f.label :password_confirmation, 'パスワード（確認）'
+    = f.text_field :password_confirmation, class: 'form-control'
+  .d-grid.gap-2.m-3
+    = f.submit '更新する', class: 'btn btn-primary rounded-pill'
