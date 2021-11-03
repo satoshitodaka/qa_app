@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+class AnswersController < BaseController
   # def new
   #   @question = Question.find(params[:id])
   #   @answer = current_user.answers.new

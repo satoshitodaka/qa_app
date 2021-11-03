@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_action :require_admin
 
   def index
@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-  
+
     def require_admin
       redirect_to root_url unless current_admin_user.admin
     end

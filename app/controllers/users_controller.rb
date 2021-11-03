@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < BaseController
   skip_before_action :login_required, only: [:new, :create]
   before_action :own_user_info?, only: [:edit, :update]
   

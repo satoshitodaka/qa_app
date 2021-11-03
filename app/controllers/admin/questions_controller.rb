@@ -1,4 +1,4 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < Admin::BaseController
   def index
     @q = Question.ransack(params[:q])
     @questions = @q.result(distinct: true).recent.page(params[:page])
