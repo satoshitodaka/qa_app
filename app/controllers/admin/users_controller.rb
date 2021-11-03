@@ -15,9 +15,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-
-    if @user.save
+    
+    if @user.update(user_params)
       redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.nickname}」を編集しました。"
     else
       render :edit
@@ -31,6 +30,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+  
     def require_admin
       redirect_to root_url unless current_admin_user.admin
     end

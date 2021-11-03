@@ -20,6 +20,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   private
+  
     def admin_session_params
       params.require(:session).permit(:email, :password)
     end

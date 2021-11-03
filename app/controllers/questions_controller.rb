@@ -69,6 +69,7 @@ class QuestionsController < ApplicationController
   end
 
   private
+  
     def question_params
       params.require(:question).permit(:title, :question_body).merge(solved: false)
     end

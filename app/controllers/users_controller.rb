@@ -31,9 +31,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
 
-    if @user.save
+    if @user.update(user_params)
       redirect_to user_url, notice: "ユーザー「#{@user.nickname}」を編集しました。"
     else
       render :edit
@@ -41,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   private
+
     def user_params
       params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :avatar).merge(admin: false)
     end
