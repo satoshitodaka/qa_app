@@ -20,7 +20,6 @@ class QuestionsController < BaseController
     @question = Question.find(params[:id])
     @answers = @question.answers
     @answer = current_user.answers.new
-    @user = current_user
   end
 
   def new
@@ -63,7 +62,7 @@ class QuestionsController < BaseController
 
   def close
     question = current_user.questions.find(params[:id])
-    question.close_question
+    question.close
     redirect_to question_url, notice: "タスク「#{question.title}」を解決済に変更しました。"
   end
 

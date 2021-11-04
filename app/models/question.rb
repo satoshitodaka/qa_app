@@ -3,11 +3,11 @@ class Question < ApplicationRecord
   validates :question_body, presence: true
 
   belongs_to :user
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   scope :recent, -> { order(created_at: :desc)}
 
-  def close_question
+  def close
     update(solved: true, solved_at: Time.zone.now)
   end
   
