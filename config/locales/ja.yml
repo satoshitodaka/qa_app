@@ -14,7 +14,7 @@ ja:
     attributes:
       question:
         title: タイトル
-        question_body: 質問内容
+        body: 質問内容
         solved: 解決状況
         solved_at: 解決日時
         created_at: 作成日時
@@ -29,7 +29,7 @@ ja:
         created_at: 作成日時
         updated_at: 更新日時日時
       answer:
-        answer_body: 回答 
+        body: 回答 
         created_at: 作成日時
         updated_at: 更新日時
 

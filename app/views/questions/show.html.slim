@@ -14,7 +14,7 @@ ul.list-group.list-group-flush.m-3
           = image_tag @question.user.avatar.variant(combine_options: { resize: "125^", gravity: "Center", crop: "125x125+0+0", auto_orient: true }).processed, class:"avatar" if @question.user.avatar.attached?
         .flex-glow-1.ms-3
           h2 = @question.title
-          p = @question.question_body
+          p = @question.body
           small.text-muted #{time_ago_in_words(@question.created_at)}前に投稿
         .flex-grow-1.ms-3.text-end
           = link_to '編集', edit_question_path, class: 'btn btn-primary m-3'
@@ -26,7 +26,7 @@ ul.list-group.list-group-flush.m-3
 
 = form_with(model: [@question, @answer], method: :post) do |f|
   .form_group
-    = f.text_area :answer_body, class: 'form-control', id: 'answer_content', placeholder:'回答を入力してみましょう。'
+    = f.text_area :body, class: 'form-control', id: 'answer_content', placeholder:'回答を入力してみましょう。'
     = f.hidden_field :question_id, value: @question.id
   .d-grid.gap-2.mx-auto.m-3
     = f.submit '回答する', class: 'btn btn-primary rounded-pill'

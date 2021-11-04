@@ -69,7 +69,7 @@ class QuestionsController < BaseController
   private
   
     def question_params
-      params.require(:question).permit(:title, :question_body).merge(solved: false)
+      params.require(:question).permit(:title, :body).merge(solved: false)
     end
 
     def check_closed_question

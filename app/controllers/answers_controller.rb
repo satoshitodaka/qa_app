@@ -37,6 +37,6 @@ class AnswersController < BaseController
   private
   
     def answer_params
-      params.require(:answer).permit(:answer_body, :question_id)
+      params.require(:answer).permit(:body, :question_id)
     end
 end

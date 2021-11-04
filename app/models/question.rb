@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   validates :title, presence: true
-  validates :question_body, presence: true
+  validates :body, presence: true
 
   belongs_to :user
   has_many :answers, dependent: :destroy
@@ -13,7 +13,7 @@ class Question < ApplicationRecord
   
   private
     def self.ransackble_attributes(auth_object = nil)
-      %w[title question_body created_at]
+      %w[title body created_at]
     end
 
     def self.ransackble_associations(auth_object = nil)
