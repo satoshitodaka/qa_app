@@ -12,9 +12,9 @@ class AnswersController < BaseController
       @users.each do |user|
         AnswerMailer.creation_email(@answer, user).deliver_now
       end
-      redirect_back(fallback_location: root_path)
+      redirect_to question_path(@answer.question)
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to question_path(@answer.question)
     end
   end
 
