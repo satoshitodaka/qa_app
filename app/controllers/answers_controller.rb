@@ -22,19 +22,6 @@ class AnswersController < BaseController
     end
   end
 
-  def edit
-    @answer = current_user.answers.find(params[:id])
-  end
-
-  def update
-    @answer = current_user.answers.find(params[:id])
-    if @answer.update(answer_params)
-      redirect_to question_url(@answer.question), notice: '回答を編集しました。'
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @answer = current_user.answers.find(params[:id])
     @answer.destroy
