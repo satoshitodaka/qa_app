@@ -27,7 +27,7 @@ class QuestionsController < BaseController
   end
 
   def create
-    @question = current_user.questions.new(question_params)
+    @question = current_user.questions.build(question_params)
     
     if @question.save
       @users = User.all.where.not(id: current_user.id)
@@ -56,7 +56,7 @@ class QuestionsController < BaseController
 
   def destroy
     question = current_user.questions.find(params[:id])
-    question.destroy
+    question.destroy!
     redirect_to questions_url, notice: "タスク「#{question.title}」を」を削除しました。"
   end
 

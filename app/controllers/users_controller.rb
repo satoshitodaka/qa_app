@@ -16,8 +16,7 @@ class UsersController < BaseController
 
   def create
     @user = User.new(user_params)
-    # @user.avatar = "user_icon.jpg"
-
+  
     if @user.save
       redirect_to root_url, notice: 'ユーザー登録が完了しました。ログインしてください。'
     else
@@ -26,11 +25,11 @@ class UsersController < BaseController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
 
     if @user.update(user_params)
       redirect_to user_url, notice: "ユーザー「#{@user.nickname}」を編集しました。"
@@ -42,7 +41,7 @@ class UsersController < BaseController
   private
 
     def user_params
-      params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :avatar).merge(admin: false)
+      params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :avatar, :admin)
     end
 
     def own_user_info?
