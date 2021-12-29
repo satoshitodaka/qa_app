@@ -1,5 +1,6 @@
 class QuestionsController < BaseController
   before_action :check_closed_question, only: [:update, :destroy, :close]
+  before_action :set_question, only: [:update, :destroy, :close]
 
   def index
     @q = Question.ransack(params[:q])
@@ -45,8 +46,6 @@ class QuestionsController < BaseController
   end
 
   def update
-    question = current_user.questions.find(params[:id])
-
     if question.update(question_params)
       redirect_to question_url, notice: "タスク「#{question.title}」を更新しました。"
     else
@@ -55,13 +54,11 @@ class QuestionsController < BaseController
   end
 
   def destroy
-    question = current_user.questions.find(params[:id])
     question.destroy!
     redirect_to questions_url, notice: "タスク「#{question.title}」を」を削除しました。"
   end
 
   def close
-    question = current_user.questions.find(params[:id])
     question.close
     redirect_to question_url, notice: "タスク「#{question.title}」を解決済に変更しました。"
   end
@@ -77,5 +74,9 @@ class QuestionsController < BaseController
       if question.solved
         redirect_to question_url, notice: '解決済みの質問は操作できません。'
       end
+    end
+
+    def set_question
+      question = current_user.questions.find(params[:id])
     end
 end
