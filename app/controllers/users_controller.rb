@@ -29,7 +29,7 @@ class UsersController < BaseController
   end
 
   def update
-    @user = current_user
+    @user = User.find(current_user.id)
 
     if @user.update(user_params)
       redirect_to user_url, notice: "ユーザー「#{@user.nickname}」を編集しました。"

@@ -8,7 +8,7 @@ class Question < ApplicationRecord
   scope :recent, -> { order(created_at: :desc)}
 
   def close
-    update(solved: true, solved_at: Time.zone.now)
+    update(solved: true)
   end
   
   private

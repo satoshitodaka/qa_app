@@ -13,7 +13,7 @@ html
         = link_to 'QaApp', root_path, class:'navbar-brand h1'
       - else current_admin_user
         = link_to 'QaApp', admin_questions_path, class:'navbar-brand h1'
-
+        
       ul.navbar-nav.ml-auto
         - if current_user
           li.nav-item= link_to '質問一覧', questions_path, class: 'nav-link'
